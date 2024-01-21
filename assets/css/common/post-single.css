@@ -1,16 +1,19 @@
 .page-header,
 .post-header {
-    margin: 24px auto var(--content-gap) auto;
+     margin: var(--content-gap) 0 calc(var(--content-gap) * 1.5);
 }
 
 .post-title {
-    margin-bottom: 2px;
+    margin-bottom: var(--content-gap);
     font-size: 40px;
 }
 
 .post-description {
-    margin-top: 10px;
-    margin-bottom: 5px;
+    margin: var(--content-gap) 0;
+    color: var(--secondary);
+    opacity: .8;
+    padding-left: .5em;
+    border-left: 8px solid var(--signature);
 }
 
 .post-meta,
@@ -26,6 +29,11 @@
     list-style: none;
     margin: auto 3px;
     box-shadow: 0 1px 0 var(--secondary);
+}
+
+.post-meta .delimiter {
+    margin-inline-start: .5em;
+    margin-inline-end: .5em;
 }
 
 .breadcrumbs a {
@@ -70,11 +78,6 @@
 }
 
 .post-content a,
-.toc a:hover {
-    box-shadow: 0 1px 0;
-    box-decoration-break: clone;
-    -webkit-box-decoration-break: clone;
-}
 
 .post-content a code {
     margin: auto 0;
@@ -218,7 +221,7 @@
 .post-content hr {
     margin: 30px 0;
     height: 2px;
-    background: var(--tertiary);
+    background: var(--tertiary-bg);
     border: 0;
 }
 
@@ -257,20 +260,35 @@
     border: 1px solid var(--border);
     background: var(--code-bg);
     border-radius: var(--radius);
-    padding: 0.4em;
+    padding: 0.4em 0;
 }
-
-.dark .toc {
-    background: var(--entry);
+.toc.side {
+    font-size: .8em;
+}
+@media screen and (min-width: 1350px) {
+    .toc.side {
+        position: fixed;
+        top: 118px;
+        z-index: 1;
+        max-height: calc(100% - 150px);
+        overflow: auto;
+    }
+    .toc.side::-webkit-scrollbar-thumb {
+        border: 5px solid var(--code-bg);
+    }
+    .toc.side.left {
+        left: 15px;
+        width: 250px;
+    }
+    .toc.side.right {
+        right: 15px;
+        width: 265px;
+    }
 }
 
 .toc details summary {
-    cursor: zoom-in;
-    margin-inline-start: 20px;
-}
-
-.toc details[open] summary {
-    cursor: zoom-out;
+    cursor: pointer;
+    margin-inline-start: 15px;
 }
 
 .toc .details {
@@ -279,12 +297,27 @@
 }
 
 .toc .inner {
-    margin: 0 20px;
-    padding: 10px 20px;
+    padding: 10px 15px 5px 35px;
 }
 
+.toc ul {
+    margin: 0;
+    padding: 0;
+}
 .toc li ul {
-    margin-inline-start: var(--gap);
+    margin-inline-start: 20px;
+}
+.toc li a {
+    line-height: 1.5em;
+    padding: 3px 5px;
+    border-radius: 5px;
+    display: block;
+}
+.toc li a.active {
+    background-color: var(--link-background-color);
+}
+.toc li a:hover {
+    text-decoration: underline;
 }
 
 .toc summary:focus {
